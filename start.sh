@@ -47,14 +47,14 @@ echo "📺 Connect via VNC: localhost:5900 (password: secret)"
 echo "🌐 Connect via browser: http://localhost:6080"
 
 # Start the Flask API for evaluation
-echo "🚀 Starting Flask API on port 5000..."
+echo "🚀 Starting Flask API on port 5000 (internal)..."
 python api.py &
 FLASK_PID=$!
 
 echo "🔥 Flask API started!"
-echo "🌐 API available at: http://localhost:5000"
-echo "📋 Health check: http://localhost:5000/health"
-echo "🚢 Track booking: POST http://localhost:5000/track"
+echo "🌐 API available at: http://localhost:${API_PORT:-5001}"
+echo "📋 Health check: http://localhost:${API_PORT:-5001}/health"
+echo "🚢 Track booking: POST http://localhost:${API_PORT:-5001}/track"
 
 # Wait a moment for API to start
 sleep 2
@@ -71,7 +71,7 @@ echo ""
 echo "=== CONNECTION INFO ==="
 echo "📺 VNC Viewer: localhost:5900"  
 echo "🌐 Web VNC: http://localhost:6080"
-echo "🔗 API: http://localhost:5000"
+echo "🔗 API: http://localhost:${API_PORT:-5001}"
 
 # Keep container running - wait for all background processes
 echo ""

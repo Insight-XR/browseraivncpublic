@@ -3,6 +3,7 @@ version: '3.8'
 services:
   # Automation Container (Student's submission)
   automation:
+    platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
@@ -12,7 +13,7 @@ services:
     ports:
       - "5900:5900"  # VNC
       - "6080:6080"  # Web VNC
-      - "5000:5000"  # API
+      - "${API_PORT:-5001}:5000"  # API (configurable host port, default 5001)
     
     # No volume mounts needed since we removed file-based caching and screenshots
     

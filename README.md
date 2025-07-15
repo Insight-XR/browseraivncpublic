@@ -22,7 +22,7 @@ docker compose up --build
 # Access points during testing:
 # - VNC Viewer: localhost:5900 (password: secret)
 # - Web VNC: http://localhost:6080
-# - API: http://localhost:5000
+# - API: http://localhost:5001 (configurable via API_PORT env var)
 ```
 
 ## 📁 Project Structure
@@ -76,12 +76,12 @@ Content-Type: application/json
 import requests
 
 # Health check
-response = requests.get("http://localhost:5000/health")
+response = requests.get("http://localhost:5001/health")
 print(response.json())
 
 # Track a booking
 payload = {"booking_id": "SINI25432400"}
-response = requests.post("http://localhost:5000/track", json=payload)
+response = requests.post("http://localhost:5001/track", json=payload)
 print(response.json())
 ```
 
@@ -221,7 +221,7 @@ This project was developed for the **AI-based Shipping Line Tracking Assignment*
 3. **API not responding**
    ```bash
    # Check API health
-   curl http://localhost:5000/health
+   curl http://localhost:5001/health
    
    # Check container logs
    docker logs automation_container | grep Flask
